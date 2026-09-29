@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
@@ -50,3 +51,7 @@ Join our community of developers creating universal apps.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
 
 pnpm start
+=======
+# DESARROLLO_MOVILES
+Este repositorio es para subir las versiones del proyecto de clase. Por seguridad, se irán subiendo con el nombre de la clase correspondiente (ejemplo: Clase 1, 2, 3). De este modo, si en dado caso rompemos el código u ocurre un error, podremos regresar a la versión funcional más cercana.
+>>>>>>> 03806af202af2f5408cd4a76f0bea7d7c6d54b40

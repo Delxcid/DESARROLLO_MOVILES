@@ -5,6 +5,8 @@ import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { useDrawer } from "../src/admin/viewmodels/use-drawer";
 import { Feather } from "@expo/vector-icons"
 import { useAuth } from "../src/context/AuthContext";
+import { useRouter } from "expo-router";
+const router = useRouter()
 
 export default function ProtectedLayout() {
     const { profile, navigationOptions } = useDrawer()
@@ -44,6 +46,9 @@ export default function ProtectedLayout() {
                                         <TouchableOpacity
                                             style={[styles.menuItemList, isSelected && styles.menuItemSelected]}
                                             key={option.name}
+                                            onPress={()=>{
+                                                router.push(`/(protected)/${option.name}` as any)
+                                            }}
                                         >
                                             <Feather
                                                 style={styles.menuIcon}
