@@ -15,7 +15,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CreateProductScreen() {
- const [description, setDescription] = useState("") 
+  const [description, setDescription] = useState("");
   const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
@@ -48,64 +48,126 @@ export default function CreateProductScreen() {
               <Text style={styles.cardTitle}>Informacion General</Text>
             </View>
 
-          <View style={styles.inputGroup}>
-  <Text style={styles.inputLabel}>
-    Nombre del producto
-  </Text>
-  <TextInput
-    placeholder="Ej. Zapato Nike"
-    style={styles.textInput}
-  />
-</View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Nombre del producto</Text>
+              <TextInput
+                placeholder="Ej. Zapato Nike"
+                style={styles.textInput}
+              />
+            </View>
 
-<View style={styles.inputGroup}>
-  <Text style={styles.inputLabel}>Categoría</Text>
-  <TouchableOpacity style={styles.selectorInput}>
-    <Text>Selecciona la categoría</Text>
-    <Feather
-      name="chevron-down"
-      size={20}
-    />
-  </TouchableOpacity>
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Categoría</Text>
+              <TouchableOpacity style={styles.selectorInput}>
+                <Text>Selecciona la categoría</Text>
+                <Feather name="chevron-down" size={20} />
+              </TouchableOpacity>
+            </View>
 
-</View>
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>SKU / Codigo de Barra</Text>
+              <View style={styles.inputWithIcon}>
+                <MaterialCommunityIcons
+                  name="barcode-scan"
+                  size={20}
+                  style={{ marginRight: 10 }}
+                />
+                <TextInput
+                  placeholder="PR-7878787878787"
+                  style={styles.textInputScan}
+                />
+              </View>
+            </View>
 
+            <View style={styles.inputGroup}>
+              <Text style={styles.inputLabel}>Descripcion Detallada</Text>
+              <TextInput
+                placeholder="Describe los atributos principales, materiales, confeccion"
+                multiline
+                numberOfLines={5}
+                textAlignVertical="top"
+                maxLength={2000}
+                style={styles.textAreaInput}
+                value={description}
+                onChangeText={setDescription}
+              />
+            </View>
 
-<View style={styles.inputGroup}>
-  <Text style={styles.inputLabel}>SKU / Codigo de Barra</Text>
-  <View style={styles.inputWithIcon}>
-    <MaterialCommunityIcons
-      name="barcode-scan"
-      size={20}
-      style={{marginRight:10}}
-    />
-    <TextInput
-      placeholder="PR-7878787878787"
-      style={styles.textInputScan}
-    />
-  </View>
+            <View style={styles.chartCounterDescription}>
+              <Text>{description.length}/2000</Text>
+            </View>
+          </View>
 
-</View>
-
-
-<View style={styles.inputGroup}>
-  <Text style={styles.inputLabel}>Descripcion Detallada</Text>
-  <TextInput
-    placeholder="Describe los atributos principales, materiales, confeccion"
-    multiline
-    numberOfLines={5}
-    textAlignVertical="top"
-    maxLength={2000}
-    style={styles.textAreaInput}
-    value={description}
-    onChangeText={setDescription}
-  />
-
-</View>
-
-<View style={styles.chartCounterDescription}>
-<Text>{description.length}/2000</Text>
-</View>
+          {/**PRECIOS E INVENTARIO */}
+          <View style={styles.card}>
+            <View style={styles.cardHeader}>
+              <Feather
+                name="dollar-sign"
+                size={20}
+                color="#006C47"
+                style={{ marginRight: 10 }}
+              />
+              <Text style={styles.cardTitle}>Precios e Inventario</Text>
+            </View>
+            <View>
+              <View style={styles.rowCols}>
+                <View style={styles.col}>
+                  <Text style={styles.inputLabel}>Precio Regular</Text>
+                  <View style={styles.inputPriceWrapper}>
+                    <Text style={{ marginRight: 6 }}>$</Text>
+                    <TextInput
+                      placeholder="0.0"
+                      keyboardType="numeric"
+                      style={styles.priceInput}
+                    />
+                  </View>
+                </View>
+                <View style={styles.col}>
+                  <Text style={styles.inputLabel}>Precio oferta</Text>
+                  <View style={styles.inputPriceWrapper}>
+                    <Text style={{ marginRight: 6 }}>$</Text>
+                    <TextInput
+                      placeholder="0.0"
+                      keyboardType="numeric"
+                      style={styles.priceInput}
+                    />
+                  </View>
+                </View>
+              </View>
+              <View style={styles.rowCols}>
+                <View style={styles.col}>
+                  <Text style={styles.inputLabel}>Stock inicial</Text>
+                  <View style={styles.inputPriceWrapper}>
+                    <Text style={{ marginRight: 6 }}>$</Text>
+                    <TextInput
+                      placeholder="50"
+                      keyboardType="numeric"
+                      style={styles.priceInput}
+                    />
+                  </View>
+                </View>
+                <View style={styles.col}>
+                  <Text style={styles.inputLabel}>Stock mínimo</Text>
+                  <View style={styles.inputPriceWrapper}>
+                    <Text style={{ marginRight: 6 }}>$</Text>
+                    <TextInput
+                      placeholder="5"
+                      keyboardType="numeric"
+                      style={styles.priceInput}
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.btnSave}>
+              <Ionicons
+                style={styles.checkIcon}
+                name="checkmark-outline"
+                size={22}
+                color="#FFF"
+              />
+              <Text style={styles.btnSaveText}>Guardar producto</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -192,46 +254,88 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderRadius: 10,
   },
-  selectorInput:{
+  selectorInput: {
     height: 48,
-  borderWidth: 1,
-  borderRadius: 10,
-  paddingHorizontal: 14,
-  borderColor: "#E5E7EB",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "space-between"
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    borderColor: "#E5E7EB",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 
-inputWithIcon:{
-  height:48,
-  borderWidth:1,
-  flexDirection:"row",
-  borderColor:"#E5E7EB",
-  paddingHorizontal:14,
-  borderRadius:10,
-  alignItems:"center",
-},
+  inputWithIcon: {
+    height: 48,
+    borderWidth: 1,
+    flexDirection: "row",
+    borderColor: "#E5E7EB",
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    alignItems: "center",
+  },
 
-textInputScan:{
-  flex: 1,
-  padding: 0
-},
+  textInputScan: {
+    flex: 1,
+    padding: 0,
+  },
 
-textAreaInput:{
-    height:120,
-    borderWidth:1,
-    borderColor:"#e5e7eb",
-     borderRadius:10,
-     paddingHorizontal:16,
-     paddingVertical: 12,
-     fontSize:14
-},
+  textAreaInput: {
+    height: 120,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    borderRadius: 10,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    fontSize: 14,
+  },
 
-chartCounterDescription:{
+  chartCounterDescription: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+
+  rowCols: {
+    flexDirection: "row",
+    gap: 8,
+  },
+  col: {
+    flex: 1,
+    marginBottom: 5,
+  },
+  inputPriceWrapper: {
+    height: 48,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    borderRadius: 10,
+    paddingHorizontal: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  priceInput: {
+    flex: 1,
+    padding: 0,
+  },
+
+  btnSave:{
+    marginTop: 16,
+    backgroundColor:"#006C47",
+    height:48,
+    borderRadius:10,
     flexDirection:"row",
-    justifyContent:"flex-end"
+    justifyContent:"center",
+    alignItems:"center",
+    marginBottom:16,
+  
+},
 
-  }
+checkIcon:{
+    marginRight:8
+},
+btnSaveText:{
+    color:"#FFF",
+    fontSize:15,
 
+},
 });
